@@ -24,9 +24,10 @@ Route::post('store',[RegisterController::class,'store']);
 Route::view('login','auth.login')->middleware('guest')->name('login');
 Route::post('authenticate',[LoginController::class,'authenticate']);
 Route::get('logout',[LoginController::class,'logout']);
-
+Route::delete('/delete-product/{product_name}', [ProductController::class, 'deleteProduct'])->name('deleteProduct');
 
 Route::get('/home', [ProductController::class, 'index'])->name('home');
 Route::post('/filter', [ProductController::class, 'filterByCategory'])->name('filterByCategory');
 
-
+Route::post('/products/show', [ProductController::class, 'show'])->name('products.show');
+Route::delete('/products/destroy', [ProductController::class, 'destroy'])->name('products.destroy');

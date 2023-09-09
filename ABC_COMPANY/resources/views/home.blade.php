@@ -8,8 +8,8 @@
     <title>Products</title>
 </head>
 <body>
-<h2>Hello {{auth()->user()->name}}!</h2>
-    <h1>Products</h1>
+    <h2>Hello {{auth()->user()->name}}!</h2>
+
 
     <!-- Category Dropdown -->
     <form action="{{ route('filterByCategory') }}" method="POST">
@@ -29,19 +29,29 @@
         <thead>
             <tr>
                 <th>Name</th>
+                <th>Category</th>
                 <th>Description</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
             @foreach($products as $product)
                 <tr>
                     <td>{{ $product->product_name }}</td>
+                    <td>{{ $product->category }}</td>
                     <td>{{ $product->product_description }}</td>
+                    <td>
+                        <form  action="{{ route('deleteProduct', ['product_name' => $product->product_name]) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-<a href="logout">Logout</a>
+
 <style>
     /* Add CSS for the table borders */
     table {
@@ -60,6 +70,6 @@
     }
 </style>
 
-
+<a href="logout">logout</a>
 </body>
 </html>

@@ -35,6 +35,34 @@ class ProductController extends Controller
     }
 
 
+public function show(Request $request)
+{
+    $selectedProduct = $request->input('product_name');
+    $product = Product::find($selectedProduct);
+    $products = Product::all();
+    $productNames = Product::pluck('category', 'category');
+    return view('home', compact('product', 'products', 'productNames'));
+}
+
+
+
+
+
+
+
+
+
+public function destroy(Request $request)
+{
+    $product_name = $request->input('product_name');
+    $product = Product::findOrFail($product_name);
+    $product->delete();
+    return redirect()->route('home')->with('success', 'Product deleted successfully');
+}
+
+
+
+
     public function index1()
     {
         $products1 = Product::all();
@@ -55,20 +83,19 @@ class ProductController extends Controller
         $categories1 = Product::select('category')->distinct()->get();
         return view('home2', compact('products1', 'categories1'));
     }
+// app/Http/Controllers/ProductController.php
 
+public function deleteProduct($product_name)
+{
+    $product = Product::where('product_name', $product_name)->first();
 
-
-    public function edit($product_name)
-    {
-        $product = Product::find($product_name);
-        return view('edit', compact('product'));
+    if (!$product) {
+        return redirect()->route('home')->with('error', 'Product not found');
     }
 
-    public function destroy($product_name)
-    {
-        $product = Product::find($product_name);
-        $product->delete();
-        return redirect()->route('home')->with('success', 'Product deleted successfully');
-    }
+    $product->delete();
+
+    return redirect()->route('home')->with('success', 'Product deleted successfully');
+}
 
 }
