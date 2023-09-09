@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+
 class ProductController extends Controller
 {
     public function diru(Request $request)
@@ -28,10 +29,16 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = Product::all(); // Fetch all products from the "products" table
-        return view('home', compact('products'));
+        $products = Product::all();
+        $categories = Product::select('category')->distinct()->get();
+        return view('home', compact('products', 'categories'));
     }
-
-
+    public function filterByCategory(Request $request)
+    {
+        $selectedCategory = $request->input('category');
+        $products = Product::where('category', $selectedCategory)->get();
+        $categories = Product::select('category')->distinct()->get();
+        return view('home', compact('products', 'categories'));
+    }
 
 }

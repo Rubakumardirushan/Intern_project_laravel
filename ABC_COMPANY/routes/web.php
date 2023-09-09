@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,11 +16,12 @@ use App\Http\Controllers\Auth\LoginController;
 */
 Route::view('register','auth.register')->middleware('guest');
 Route::post('store',[RegisterController::class,'store']);
-Route::view('home','home')->middleware('auth');
-
+//Route::view('home','home')->middleware('auth');
+//Route::get('/home', [ProductController::class, 'index'])->name('home');
 Route::view('login','auth.login')->middleware('guest')->name('login');
 Route::post('authenticate',[LoginController::class,'authenticate']);
-Route::get('logout',[LoginController::class,'logout']);use App\Http\Controllers\ProductController;
+Route::get('logout',[LoginController::class,'logout']);
 
-Route::get('/', [ProductController::class, 'index']);
 
+Route::get('/home', [ProductController::class, 'index'])->name('home');
+Route::post('/filter', [ProductController::class, 'filterByCategory'])->name('filterByCategory');
