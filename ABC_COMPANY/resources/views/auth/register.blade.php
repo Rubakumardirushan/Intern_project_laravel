@@ -36,6 +36,10 @@
             margin-left: 100px;
             justify-content: center;
         }
+        a{
+            margin-left: 180px;
+            
+        }
 
         input[type="text"],
         input[type="password"] {
@@ -78,6 +82,7 @@
         <input type="password" name="password" placeholder="password"><br>
         <input type="password" name="password_confirmation" placeholder="confirmpassword"><br>
         <input type="submit" value="submit"><br>
+        <a href="login">already have account?</a>
         @csrf
     </form>
 </div>
