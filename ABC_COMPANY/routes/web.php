@@ -19,4 +19,7 @@ Route::view('home','home')->middleware('auth');
 
 Route::view('login','auth.login')->middleware('guest')->name('login');
 Route::post('authenticate',[LoginController::class,'authenticate']);
-Route::get('logout',[LoginController::class,'logout']);
+Route::get('logout',[LoginController::class,'logout']);use App\Http\Controllers\ProductController;
+
+Route::get('/', [ProductController::class, 'index']);
+

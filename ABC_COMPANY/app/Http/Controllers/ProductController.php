@@ -25,4 +25,13 @@ class ProductController extends Controller
         // Return a success response
         return response()->json(['message' => 'Product created successfully'], 201);
     }
+
+    public function index()
+    {
+        $products = Product::all(); // Fetch all products from the "products" table
+        return view('home', compact('products'));
+    }
+
+
+
 }
