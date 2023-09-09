@@ -33,12 +33,42 @@ class ProductController extends Controller
         $categories = Product::select('category')->distinct()->get();
         return view('home', compact('products', 'categories'));
     }
+
+
+    public function index1()
+    {
+        $products1 = Product::all();
+        $categories1 = Product::select('category')->distinct()->get();
+        return view('home2', compact('products1', 'categories1'));
+    }
     public function filterByCategory(Request $request)
     {
         $selectedCategory = $request->input('category');
         $products = Product::where('category', $selectedCategory)->get();
         $categories = Product::select('category')->distinct()->get();
         return view('home', compact('products', 'categories'));
+    }
+    public function filterByCategory1(Request $request)
+    {
+        $selectedCategory1 = $request->input('category');
+        $products1 = Product::where('category', $selectedCategory1)->get();
+        $categories1 = Product::select('category')->distinct()->get();
+        return view('home2', compact('products1', 'categories1'));
+    }
+
+
+
+    public function edit($product_name)
+    {
+        $product = Product::find($product_name);
+        return view('edit', compact('product'));
+    }
+
+    public function destroy($product_name)
+    {
+        $product = Product::find($product_name);
+        $product->delete();
+        return redirect()->route('home')->with('success', 'Product deleted successfully');
     }
 
 }

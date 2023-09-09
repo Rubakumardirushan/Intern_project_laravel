@@ -8,17 +8,16 @@
     <title>Products</title>
 </head>
 <body>
-<h2>Hello {{auth()->user()->name}}!</h2>
-    <h1>Products</h1>
+    <h1>Products</h1> <a href="register">signup</a>
 
     <!-- Category Dropdown -->
-    <form action="{{ route('filterByCategory') }}" method="POST">
+    <form action="{{ route('filterByCategory1') }}" method="POST">
         @csrf
         <label for="category">Select a Category:</label>
         <select name="category" id="category">
             <option value="">All</option>
-            @foreach($categories as $category)
-                <option value="{{ $category->category }}">{{ $category->category }}</option>
+            @foreach($categories1 as $category1)
+                <option value="{{ $category1->category }}">{{ $category1->category }}</option>
             @endforeach
         </select>
         <button type="submit">Filter</button>
@@ -33,7 +32,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($products as $product)
+            @foreach($products1 as $product)
                 <tr>
                     <td>{{ $product->product_name }}</td>
                     <td>{{ $product->product_description }}</td>
@@ -41,7 +40,7 @@
             @endforeach
         </tbody>
     </table>
-<a href="logout">Logout</a>
+
 <style>
     /* Add CSS for the table borders */
     table {

@@ -14,6 +14,9 @@ use App\Http\Controllers\ProductController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::view('/homme','home2');
+Route::get('/homme', [ProductController::class, 'index1'])->name('home2');
+Route::post('/filter1', [ProductController::class, 'filterByCategory1'])->name('filterByCategory1');
 Route::view('register','auth.register')->middleware('guest');
 Route::post('store',[RegisterController::class,'store']);
 //Route::view('home','home')->middleware('auth');
@@ -25,3 +28,5 @@ Route::get('logout',[LoginController::class,'logout']);
 
 Route::get('/home', [ProductController::class, 'index'])->name('home');
 Route::post('/filter', [ProductController::class, 'filterByCategory'])->name('filterByCategory');
+
+
