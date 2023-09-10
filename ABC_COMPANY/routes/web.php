@@ -20,7 +20,7 @@ Route::post('/filter1', [ProductController::class, 'filterByCategory1'])->name('
 Route::view('register','auth.register')->middleware('guest');
 Route::post('store',[RegisterController::class,'store']);
 
-//Route::get('/home', [ProductController::class, 'index'])->name('home');
+
 Route::view('login','auth.login')->middleware('guest')->name('login');
 Route::post('authenticate',[LoginController::class,'authenticate']);
 Route::get('logout',[LoginController::class,'logout']);
