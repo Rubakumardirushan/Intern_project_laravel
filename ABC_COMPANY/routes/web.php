@@ -19,7 +19,7 @@ Route::get('/homme', [ProductController::class, 'index1'])->name('home2');
 Route::post('/filter1', [ProductController::class, 'filterByCategory1'])->name('filterByCategory1');
 Route::view('register','auth.register')->middleware('guest');
 Route::post('store',[RegisterController::class,'store']);
-//Route::view('home','home')->middleware('auth');
+
 //Route::get('/home', [ProductController::class, 'index'])->name('home');
 Route::view('login','auth.login')->middleware('guest')->name('login');
 Route::post('authenticate',[LoginController::class,'authenticate']);
